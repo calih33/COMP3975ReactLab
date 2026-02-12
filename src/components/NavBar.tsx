@@ -1,34 +1,53 @@
-import { Link } from "react-router-dom";
-import reactLogo from "../assets/react.svg";
-const NavBar = () => {
+import { useState } from 'react';
+import { NavLink } from "react-router-dom";
+import '../navbar.css'; // We will create this next
+
+const Navbar = () => {
+    const [showNavbar, setShowNavbar] = useState(false);
+
+    const handleShowNavbar = () => {
+        setShowNavbar(!showNavbar);
+    };
+
     return (
-        <nav className="navbar navbar-expand-sm bg-primary navbar-dark">
-            <a className="navbar-brand" href="#">
-                <img src={reactLogo} width="30" height="30" alt="" />
-                school
-            </a>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <Link className="nav-link" to="/">
-                            Home
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/about">
-                            About
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/list">
-                            Student List
-                        </Link>
-                    </li>
-                </ul>
+        <nav className="navbar">
+            <div className="container">
+                <div className="logo">
+                    <Logo />
+                </div>
+                <div className="menu-icon" onClick={handleShowNavbar}>
+                    <Hamburger />
+                </div>
+                {/* Toggle the 'active' class based on state */}
+                <div className={`nav-elements ${showNavbar ? "active" : ""}`}>
+                    <ul>
+                        <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink to="/list">Student List</NavLink></li>
+                        <li><NavLink to="/about">About</NavLink></li>
+                        <li><NavLink to="/cali">About Cali</NavLink></li>
+                    </ul>
+                </div>
             </div>
-            <a className="navbar-brand" href="/">
-            </a>
         </nav>
     );
 };
-export default NavBar;
+
+const Hamburger = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24" viewBox="0 0 52 24">
+        <g id="Group_9" transform="translate(-294 -47)">
+            <rect width="42" height="4" rx="2" transform="translate(304 47)" fill="#574c4c" />
+            <rect width="42" height="4" rx="2" transform="translate(304 67)" fill="#574c4c" />
+            <rect width="52" height="4" rx="2" transform="translate(294 57)" fill="#574c4c" />
+        </g>
+    </svg>
+);
+
+const Logo = () => (
+    <img
+        src="logo.svg"
+        alt="Logo"
+        style={{ height: '41px', width: 'auto' }}
+    />
+);
+
+export default Navbar;

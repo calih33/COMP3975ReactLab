@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 type HomePageProps = {
     title?: string;
     subtitle?: string;
