@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import Config from "../config/";
 import { Student } from "../models/Student";
 import AddStudentForm from '../components/AddStudentForm';
-
+import { Table } from 'react-bootstrap';
+import '../index.css';
 const StudentDetailPage = () => {
     const { id } = useParams();
     const [studentInfo, setStudentInfo] = useState<Student>({
@@ -28,22 +29,28 @@ const StudentDetailPage = () => {
         <section>
             <div style={{ width: "20%", float: "right" }}>
                 <h3>Others:</h3>
-                <StudentList exceptId={studentInfo.studentId} />
+                <Table striped bordered hover className="student-table">
+                    <tbody>
+                        <StudentList exceptId={studentInfo.studentId} />
+                    </tbody>
+                </Table>
             </div>
-            <h4 className="text-muted">Student ID={studentInfo.studentId}</h4>
-            <div>
-                <b>Name: </b>
-                {studentInfo.firstName} {studentInfo.lastName}
-            </div>
-            <div>
-                <b>school: </b>
-                {studentInfo.school}
-            </div>
+            <h4 className="id text-muted">Student ID={studentInfo.studentId}</h4>
+            <section className="student-info">
+                <div>
+                    <b>Name: </b>
+                    {studentInfo.firstName} {studentInfo.lastName}
+                </div>
+                <div>
+                    <b>school: </b>
+                    {studentInfo.school}
+                </div>
+            </section>
             <div style={{ width: "50%", float: "left" }}>
                 <hr />
                 <AddStudentForm />
             </div>
-        </section>
+        </section >
     );
 };
 export default StudentDetailPage;
