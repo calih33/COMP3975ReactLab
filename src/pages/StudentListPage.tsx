@@ -1,5 +1,4 @@
 import StudentList from "../components/StudentList";
-import { Link } from "react-router-dom";
 
 const StudentListPage = () => {
     return (
