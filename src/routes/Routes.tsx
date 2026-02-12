@@ -42,4 +42,6 @@ export const router = createBrowserRouter([
             },
         ],
     },
-]);
+], {
+    basename: "/COMP3975ReactLab",
+});
